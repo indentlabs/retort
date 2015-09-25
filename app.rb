@@ -11,6 +11,13 @@ end
 class Ngram < ActiveRecord::Base
 end
 
+get "/ngram/list" do
+	content_type :json
+
+	Ngram.order(:prior).pluck(:prior, :after).to_json
+end
+
+
 get "/ngram/add" do
 	content_type :json
 
@@ -29,6 +36,12 @@ end
 
 
 class Retort < ActiveRecord::Base
+end
+
+get "/retort/list" do
+	content_type :json
+
+	Retort.order(:stimulus).pluck(:stimulus, :response).to_json
 end
 
 get "/retort/add" do
