@@ -4,8 +4,10 @@ require './environments'
 
 require 'json'
 
+set :public_folder, Proc.new { File.join(root, "views", "assets") }
+
 get "/" do
-	"API docs are TODO"
+	erb :"apidocs"
 end
 
 class Ngram < ActiveRecord::Base
