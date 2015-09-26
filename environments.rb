@@ -1,3 +1,5 @@
+set :public_folder, Proc.new { File.join(root, "views", "assets") }
+
 configure :development do
   set :database, 'sqlite3:dev.db'
   set :show_exceptions, true
