@@ -1,6 +1,6 @@
-class CreateNgrams < ActiveRecord::Migration
+class CreateBigrams < ActiveRecord::Migration
  def self.up
-   create_table :ngrams do |t|
+   create_table :bigrams do |t|
      t.string :prior
      t.string :after
      t.timestamps
@@ -8,6 +8,6 @@ class CreateNgrams < ActiveRecord::Migration
  end
 
  def self.down
-   drop_table :ngrams
+   drop_table :bigrams
  end
 end

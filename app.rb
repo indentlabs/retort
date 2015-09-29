@@ -8,30 +8,30 @@ get "/" do
 	erb :"apidocs"
 end
 
-class Ngram < ActiveRecord::Base
+class Bigram < ActiveRecord::Base
 end
 
-get "/ngram/list" do
+get "/bigram/list" do
 	content_type :json
 
-	Ngram.order(:prior).pluck(:prior, :after).to_json
+	Bigram.order(:prior).pluck(:prior, :after).to_json
 end
 
 
-get "/ngram/add" do
+get "/bigram/add" do
 	content_type :json
 
 	sanitized_params = params.slice('prior', 'after')
-	created_ngram = Ngram.find_or_create_by sanitized_params
+	created_bigram = Bigram.find_or_create_by sanitized_params
 	#todo increase weight if found (not created)
 
-	created_ngram.to_json
+	created_bigram.to_json
 end
 
-get "/ngram/next" do
+get "/bigram/next" do
 	content_type :json
 
-	Ngram.where(prior: params[:prior]).sample.to_json
+	Bigram.where(prior: params[:prior]).sample.to_json
 end
 
 
