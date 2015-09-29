@@ -8,6 +8,22 @@ get "/" do
 	erb :"apidocs"
 end
 
+get "/markov/create" do
+	content_type :json
+
+	#todo default origin/start word
+	gram  = Bigram.offset(rand Bigram.count).first
+	chain = gram.slice(:prior, :after).values
+
+	#todo forward and backward expansion
+	while (gram = Bigram.where(prior: chain.last).sample) && chain.length < 10
+		#todo customizable chain length limits
+		chain << gram[:after]
+	end
+
+	chain.join ' '
+end
+
 class Bigram < ActiveRecord::Base
 end
 
@@ -16,7 +32,6 @@ get "/bigram/list" do
 
 	Bigram.order(:prior).pluck(:prior, :after).to_json
 end
-
 
 get "/bigram/add" do
 	content_type :json
