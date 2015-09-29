@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150924031835) do
 
-  create_table "ngrams", force: :cascade do |t|
+  create_table "bigrams", force: :cascade do |t|
     t.string   "prior"
     t.string   "after"
     t.datetime "created_at"
