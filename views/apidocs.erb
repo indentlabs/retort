@@ -109,14 +109,81 @@
     <div class="row">
       <h2 class="centered">API Endpoints</h2>
       <hr>
-      <div class="col-lg-8 col-lg-offset-2 centered">
-        <p class="large">
-          The API is still undergoing rapid development and documentation will be published here as soon as it is stable.
-        </p>
-        <p>
-          Watch this space!
-        </p>
+
+      <div class="col-lg-8 col-lg-offset-2 text-left">
+        <h3>Retorts</h3>
+        <table class="table apitable">
+          <tr>
+            <th>Endpoint</th>
+            <th>Description</th>
+            <th>GET Parameters</th>
+          </tr>
+
+          <tr>
+            <td>
+              <a href="https://indent-retort.herokuapp.com/retort/get?stimulus=hey">
+                /retort/get
+              </a>
+            </td>
+            <td>Fetch a retort for a stimulus</td>
+            <td>
+              <ul>
+                <li><strong>stimulus*</strong> - a prompt to respond to</li>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://indent-retort.herokuapp.com/retort/add?stimulus=hey&response=sup">
+                /retort/add
+              </a>
+            </td>
+            <td>Saves a retort, immediately available for retrieval</td>
+            <td>
+              <ul>
+                <li><strong>stimulus*</strong> - a prompt to respond to</li>
+                <li><strong>response*</strong> - a valid response</li>
+            </td>
+          </tr>
+        </table>
       </div>
+
+      <div class="col-lg-8 col-lg-offset-2 text-left">
+        <h3>Bigrams</h3>
+        <table class="table apitable">
+          <tr>
+            <th>Endpoint</th>
+            <th>Description</th>
+            <th>GET Parameters</th>
+          </tr>
+
+          <tr>
+            <td>
+              <a href="https://indent-retort.herokuapp.com/bigram/next?prior=there">
+                /bigram/next
+              </a>
+            </td>
+            <td>Fetch a bigram consequent for an antecedent</td>
+            <td>
+              <ul>
+                <li><strong>prior*</strong> - bigram antecedent</li>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://indent-retort.herokuapp.com/bigram/add?prior=there&after=you">
+                /bigram/add
+              </a>
+            </td>
+            <td>Saves a bigram, immediately available for retrieval</td>
+            <td>
+              <ul>
+                <li><strong>prior*</strong> - bigram antecedent</li>
+                <li><strong>after*</strong> - bigram consequent</li>
+            </td>
+          </tr>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>
