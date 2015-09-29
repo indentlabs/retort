@@ -16,7 +16,8 @@ get "/markov/create" do
 	chain = gram.slice(:prior, :after).values
 
 	#todo forward and backward expansion
-	while (gram = Bigram.where(prior: chain.last).sample) && chain.length < 10
+	#todo better cyclic detection
+	while (gram = Bigram.where(prior: chain.last).where.not(after: chain.last).sample) && chain.length < 10
 		#todo customizable chain length limits
 		chain << gram[:after]
 	end
