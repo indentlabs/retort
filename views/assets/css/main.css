@@ -217,6 +217,20 @@ a:before, a:after {
 	-o-transition: color 0.1s ease-in, background 0.1s ease-in;
 	transition: color 0.1s ease-in, background 0.1s ease-in;
 }
+
+/* ==========================================================================
+   Theming
+   ========================================================================== */
+
+.parameter-list {
+	list-style-type: none;
+	padding: 0;
+}
+.parameter-list li {
+	padding: 0 0 4px 0;
+}
+
+
 /* ==========================================================================
    Wrap Sections
    ========================================================================== */
