@@ -4,6 +4,9 @@ require './environments'
 
 require 'json'
 
+class Bigram < ActiveRecord::Base; end
+class Retort < ActiveRecord::Base; end
+
 get "/" do
 	erb :"apidocs"
 end
@@ -23,9 +26,6 @@ get "/markov/create" do
 	end
 
 	chain.join ' '
-end
-
-class Bigram < ActiveRecord::Base
 end
 
 get "/bigram/list" do
@@ -50,8 +50,13 @@ get "/bigram/next" do
 	Bigram.where(prior: params[:prior]).sample.to_json
 end
 
+get "/bigram/parse" do
+	content_type :json
 
-class Retort < ActiveRecord::Base
+	tokens = params[:message].split(' ') #todo TokenService.tokenize
+	(0..(tokens.length - 2)).map do |i|
+		Bigram.find_or_create_by(prior: tokens[i], after: tokens[i + 1])
+	end.to_json
 end
 
 get "/retort/list" do
