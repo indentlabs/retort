@@ -14,13 +14,19 @@ end
 get "/markov/create" do
 	content_type :json
 
+	maximum_chain_length = begin
+		Integer params[:maximum_chain_length]
+	rescue
+		20
+	end
+
 	#todo start word
 	gram  = Bigram.where(prior: nil).sample
 	chain = gram.slice(:prior, :after).values
 
 	#todo forward and backward expansion
 	#todo better cyclic detection
-	while (gram = Bigram.where(prior: chain.last).where.not(after: chain.last).sample) && chain.length < 20
+	while (gram = Bigram.where(prior: chain.last).where.not(after: chain.last).sample) && chain.length <= maximum_chain_length
 		#todo customizable chain length limits
 		break if gram[:after].nil?
 		chain << gram[:after]
