@@ -14,18 +14,19 @@ end
 get "/markov/create" do
 	content_type :json
 
-	#todo default origin/start word
-	gram  = Bigram.offset(rand Bigram.count).first
+	#todo start word
+	gram  = Bigram.where(prior: nil).sample
 	chain = gram.slice(:prior, :after).values
 
 	#todo forward and backward expansion
 	#todo better cyclic detection
 	while (gram = Bigram.where(prior: chain.last).where.not(after: chain.last).sample) && chain.length < 10
 		#todo customizable chain length limits
+		break if gram[:after].nil?
 		chain << gram[:after]
 	end
 
-	chain.join ' '
+	chain.compact.join ' '
 end
 
 get "/bigram/list" do
@@ -53,10 +54,16 @@ end
 get "/bigram/parse" do
 	content_type :json
 
+	created = []
+
 	tokens = params[:message].split(' ') #todo TokenService.tokenize
-	(0..(tokens.length - 2)).map do |i|
-		Bigram.find_or_create_by(prior: tokens[i], after: tokens[i + 1])
-	end.to_json
+	created << Bigram.find_or_create_by(prior: nil, after: tokens[0])
+	created << (0..(tokens.length - 2)).map do |i|
+		Bigram.find_or_create_by(prior: tokens[i], after: tokens[i + 1]) #todo BigramService.add_or_create_by for adding weights/reuse?
+	end
+	created << Bigram.find_or_create_by(prior: tokens[-1], after: nil)
+
+	created.to_json
 end
 
 get "/retort/list" do
