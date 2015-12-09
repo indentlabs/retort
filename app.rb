@@ -20,7 +20,7 @@ get "/markov/create" do
 
 	#todo forward and backward expansion
 	#todo better cyclic detection
-	while (gram = Bigram.where(prior: chain.last).where.not(after: chain.last).sample) && chain.length < 10
+	while (gram = Bigram.where(prior: chain.last).where.not(after: chain.last).sample) && chain.length < 20
 		#todo customizable chain length limits
 		break if gram[:after].nil?
 		chain << gram[:after]
