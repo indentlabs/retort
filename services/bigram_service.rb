@@ -16,4 +16,8 @@ class BigramService
 	def self.find_or_create_by_hash(bigram_hash:)
 		Bigram.find_or_create_by(prior: bigram_hash[:prior], after: bigram_hash[:after])
 	end
+
+	def self.random_word_after(word:)
+		Bigram.where(prior: word).sample
+	end
 end

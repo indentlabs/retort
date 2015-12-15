@@ -46,7 +46,7 @@ end
 get "/bigram/next" do
 	content_type :json
 
-	Bigram.where(prior: params[:prior]).sample.to_json
+	BigramService.random_word_after(word: params[:prior]).to_json
 end
 
 get "/bigram/parse" do
