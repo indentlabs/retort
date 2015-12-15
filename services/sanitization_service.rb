@@ -1,5 +1,6 @@
 class SanitizationService
 	def self.standard_sanitization(message)
+		message = remove_links message
 		message = trim_whitespace message
 		message = capitalize_properly message
 		message = punctuate_properly message
@@ -31,7 +32,7 @@ class SanitizationService
 	end
 
 	def self.remove_links(message)
-		message #todo
+		TokenService.tokenize(message).reject(&:is_a_link?).join ' '
 	end
 
 	def self.match_parentheses(message)
