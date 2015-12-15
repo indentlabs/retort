@@ -6,6 +6,11 @@ class SanitizationService
 		message
 	end
 
+	def self.trim_whitespace(message)
+		#todo s/  / /
+		message.strip
+	end
+
 	def self.capitalize_properly(message)
 		TokenService.tokenize_sentences(message).map(&:capitalize_first).join ' '
 	end
