@@ -7,6 +7,13 @@ class SanitizationService
 		message
 	end
 
+	def self.ipsum_sanitization(message)
+		message = standard_sanitization message
+		message = remove_symbols message
+
+		message
+	end
+
 	def self.trim_whitespace(message)
 		#todo s/  / /
 		message.strip
@@ -24,12 +31,18 @@ class SanitizationService
 	end
 
 	def self.remove_links(message)
-		throw NotImplemented
+		message #todo
 	end
 
 	def self.match_parentheses(message)
+		message #todo
 	end
 
 	def self.match_quotes(message)
+		message #todo
+	end
+
+	def self.remove_symbols(message)
+		message #todo
 	end
 end

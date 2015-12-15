@@ -32,6 +32,17 @@ get "/markov/create" do
 	SanitizationService.standard_sanitization(chain)
 end
 
+get "/markov/ipsum" do
+	content_type :json
+
+	5.times.map {
+		6.times.map {
+			chain = MarkovChainService.create_random_chain
+			SanitizationService.ipsum_sanitization(chain)
+		}.join ' '
+	}.join("\n\n")
+end
+
 get "/bigram/list" do
 	content_type :json
 

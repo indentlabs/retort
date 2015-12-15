@@ -1,5 +1,6 @@
 class MarkovChainService
 	def self.create_random_chain(maximum_chain_length: 20)
+		#todo minimum_chain_length for ipsum
 		gram = Bigram.where(prior: nil).sample
 		chain = [nil, gram[:after]]
 
