@@ -2,6 +2,8 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './environments'
 
+require_relative 'lib/string'
+
 require_relative 'services/bigram_service'
 require_relative 'services/markov_chain_service'
 require_relative 'services/sanitization_service'
@@ -25,9 +27,9 @@ get "/markov/create" do
 		20
 	end
 
-	MarkovChainService.create_random_chain(
-		maximum_chain_length: maximum_chain_length
-	)
+	chain = MarkovChainService.create_random_chain(maximum_chain_length: maximum_chain_length)
+
+	SanitizationService.standard_sanitization(chain)
 end
 
 get "/bigram/list" do
@@ -65,7 +67,7 @@ get "/retort/add" do
 	content_type :json
 
 	sliced_params = params.slice('stimulus', 'response')
-	Retort.find_or_create_by(sliced_params).to_json
+	Retort.find_or_create_by(sliced_params).to_json #todo RetortService.find_or_create_by
 end
 
 get "/retort/get" do
