@@ -7,6 +7,7 @@ class MarkovChainService
 		#todo forward and backward expansion
 		#todo better cyclic detection
 		while (gram = Bigram.where(prior: chain.last).where.not(after: chain.last).sample)
+			next if gram[:after].blank?
 			break if chain.length > maximum_chain_length
 			break if gram[:after].nil?
 
