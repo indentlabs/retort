@@ -1,5 +1,6 @@
 class SanitizationService
 	def self.standard_sanitization(message)
+		message = trim_whitespace message
 		message = capitalize_properly message
 		message = punctuate_properly message
 
