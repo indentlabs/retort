@@ -44,6 +44,6 @@ class SanitizationService
 	end
 
 	def self.remove_symbols(message)
-		message #todo
+		message.tr('^A-Za-z0-9\.\$!\? ', '')
 	end
 end
