@@ -9,7 +9,7 @@ class MarkovChainService
 		while (gram = Bigram.where(prior: chain.last).where.not(after: chain.last).sample)
 			break if chain.length > maximum_chain_length
 			break if gram[:after].nil?
-			next if gram[:after].blank?
+			next if gram[:after].empty?
 
 			chain << gram[:after]
 		end

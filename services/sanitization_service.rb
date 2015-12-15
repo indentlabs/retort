@@ -16,8 +16,7 @@ class SanitizationService
 	end
 
 	def self.trim_whitespace(message)
-		#todo s/  / /
-		message.strip
+		message.strip.squeeze(' ')
 	end
 
 	def self.capitalize_properly(message)
