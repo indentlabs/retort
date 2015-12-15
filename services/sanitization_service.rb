@@ -26,4 +26,10 @@ class SanitizationService
 	def self.remove_links(message)
 		throw NotImplemented
 	end
+
+	def self.match_parentheses(message)
+	end
+
+	def self.match_quotes(message)
+	end
 end
