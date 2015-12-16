@@ -20,4 +20,12 @@ class BigramService
 	def self.random_word_after(word:)
 		Bigram.where(prior: word).sample
 	end
+
+	def self.all_possible_words_before(word:)
+		Bigram.where(after: word).pluck(:prior)
+	end
+
+	def self.all_possible_words_after(word:)
+		Bigram.where(prior: word).pluck(:after)
+	end
 end

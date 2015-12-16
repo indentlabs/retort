@@ -87,13 +87,13 @@
           There are no rate limits at this time, so enjoy!
         </p>
       </div>
-      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
-        <h3>Markov Chains</h3>
-        <p>Fetch the next word in a chain or build an entire chain at once.</p>
-      </div>
       <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
         <h3>Stimulus Response</h3>
         <p>Get immediate, natural responses to any comment or phrase.</p>
+      </div>
+      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
+        <h3>Markov Chains</h3>
+        <p>Fetch the next word in a chain or build an entire chain at once.</p>
       </div>
       <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
         <h3>Identity Mirroring</h3>
@@ -119,6 +119,7 @@
             <th>Description</th>
             <th width="5%">Method</th>
             <th width="30%">Parameters</th>
+            <th>Response</th>
           </tr>
 
           <tr>
@@ -133,6 +134,7 @@
               <ul class="parameter-list">
                 <li><strong>stimulus*</strong> - a prompt to respond to</li>
             </td>
+            <td>JSON</td>
           </tr>
           <tr>
             <td>
@@ -148,6 +150,7 @@
                 <li><strong>response*</strong> - a valid response</li>
               </ul>
             </td>
+            <td>JSON</td>
           </tr>
         </table>
       </div>
@@ -160,6 +163,7 @@
             <th>Description</th>
             <th width="5%">Method</th>
             <th width="30%">Parameters</th>
+            <th>Response</th>
           </tr>
 
           <tr>
@@ -170,8 +174,8 @@
             </td>
             <td>Generate a random markov chain</td>
             <td>GET</td>
-            <td>
-            </td>
+            <td></td>
+            <td>Text</td>
           </tr>
           <tr>
             <td>
@@ -181,8 +185,8 @@
             </td>
             <td>Generate five paragraphs of english lorem ipsum</td>
             <td>GET</td>
-            <td>
-            </td>
+            <td></td>
+            <td>Text</td>
           </tr>
         </table>
       </div>
@@ -195,6 +199,7 @@
             <th>Description</th>
             <th width="5%">Method</th>
             <th width="30%">Parameters</th>
+            <th>Response</th>
           </tr>
 
           <tr>
@@ -209,6 +214,37 @@
               <ul class="parameter-list">
                 <li><strong>prior*</strong> - bigram antecedent</li>
             </td>
+            <td>JSON</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="/bigram/consequents?prior=there">
+                /bigram/consequents
+              </a>
+            </td>
+            <td>Fetches all possible consequents for an antecedent</td>
+            <td>GET</td>
+            <td>
+              <ul class="parameter-list">
+                <li><strong>prior*</strong> - bigram antecedent</li>
+              </ul>
+            </td>
+            <td>JSON</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="/bigram/consequents?prior=there">
+                /bigram/antecedents
+              </a>
+            </td>
+            <td>Fetches all possible antecedents for a consequent</td>
+            <td>GET</td>
+            <td>
+              <ul class="parameter-list">
+                <li><strong>after*</strong> - bigram consequent</li>
+              </ul>
+            </td>
+            <td>JSON</td>
           </tr>
           <tr>
             <td>
@@ -224,6 +260,7 @@
                 <li><strong>after*</strong> - bigram consequent</li>
               </ul>
             </td>
+            <td>JSON</td>
           </tr>
           <tr>
             <td>
@@ -238,6 +275,7 @@
                 <li><strong>message*</strong> - tokenizable string</li>
               </ul>
             </td>
+            <td>JSON</td>
           </tr>
         </table>
       </div>

@@ -62,6 +62,18 @@ get "/bigram/next" do
 	BigramService.random_word_after(word: params[:prior]).to_json
 end
 
+get "/bigram/antecedents" do
+	content_type :json
+
+	BigramService.all_possible_words_before(word: params[:prior]).to_json
+end
+
+get "/bigram/consequents" do
+	content_type :json
+
+	BigramService.all_possible_words_after(word: params[:prior]).to_json
+end
+
 get "/bigram/parse" do
 	content_type :json
 
