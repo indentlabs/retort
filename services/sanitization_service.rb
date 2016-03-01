@@ -25,8 +25,9 @@ class SanitizationService
 
 	def self.punctuate_properly(message)
 		#todo other punctuations based on sentence
-		TokenService.tokenize_sentences(message).map do |sentence|
+		TokenService.tokenize_sentences(message).collect do |sentence|
 			sentence += '.' unless sentence.ends_in_terminal_point?
+			sentence
 		end.join ' '
 	end
 

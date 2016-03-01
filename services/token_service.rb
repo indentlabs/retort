@@ -4,6 +4,6 @@ class TokenService
   end
 
   def self.tokenize_sentences(string)
-	string.gsub(/[.?!]\s/, '\0|').split('|')
+	string.gsub(/([.?!]\s)/, '\0|').split('|').map(&:strip)
   end
 end
