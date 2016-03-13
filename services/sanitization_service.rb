@@ -24,7 +24,8 @@ class SanitizationService
 	end
 
 	def self.punctuate_properly(message)
-		#todo other punctuations based on sentence
+		message = match_parentheses message
+
 		TokenService.tokenize_sentences(message).collect do |sentence|
 			sentence += '.' unless sentence.ends_in_terminal_point?
 			sentence
@@ -36,11 +37,43 @@ class SanitizationService
 	end
 
 	def self.match_parentheses(message)
-		message #todo
+		opening_parentheses = message.count "("
+		closing_parentheses = message.count ")"
+
+		return message if opening_parentheses == closing_parentheses
+		# todo make sure parentheses are opened before closed
+
+		if opening_parentheses > closing_parentheses
+			parentheses_to_add = opening_parentheses - closing_parentheses
+			message = ([message] + [")"] * parentheses_to_add).join
+		else
+			parentheses_to_add = closing_parentheses - opening_parentheses
+			message = (["("] * parentheses_to_add + [message]).join
+		end
 	end
 
 	def self.match_quotes(message)
-		message #todo
+		#['"', "'"].each do |quote|
+		#	words_with_left_quote  = message.scan Regexp.new("(#{quote}\w+[^#{quote}]?")
+		#	words_with_right_quote = message.scan Regexp.new("[^ #{quote}]?\w+#{quote})
+		#
+		#	replacements_to_make = words_with_left_quote.length - words_with_right_quote.length
+		#
+		#	TokenService.tokenize(message).map do |word|
+		#		break if replacements_to_make.zero?
+		#		next if words_with_left_quote.include?(word) || words_with_right_quote.include?(word)
+		#
+		#		if replacements_to_make > 0
+		#			word = "#{word}#{quote}"
+		#			replacements_to_make -= 1
+		#		elsif replacements_to_make < 0
+		#			word = "#{quote}#{word}"
+		#			replacements_to_make += 1
+		#		end
+		#		word
+		#	end.join ' '
+		#end
+		message
 	end
 
 	def self.remove_symbols(message)
