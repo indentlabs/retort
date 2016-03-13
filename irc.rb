@@ -31,7 +31,23 @@ bot = Cinch::Bot.new do
   on :message, /TK: be ([^ ]+)/ do |m, person|
     puts "Imitating #{person}"
 
-    uri = URI.parse("#{retort_url}/markov/create?identifier=#{person}&medium=irc.amazdong.com&channel=interns")
+    src = "#{retort_url}/markov/create?identifier=#{person}&medium=irc.amazdong.com&channel=interns"
+    puts src
+    uri = URI.parse(src)
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+
+    m.reply response.body
+  end
+  
+  on :message, /TK: be someone from ([^ ]+)/ do |m, medium|
+    puts "Imitating someone from #{medium}"
+
+    src = "#{retort_url}/markov/create?medium=#{medium}"
+    puts src
+    uri = URI.parse(src)
     http = Net::HTTP.new(uri.host, uri.port)
 
     request = Net::HTTP::Get.new(uri.request_uri)
@@ -41,17 +57,17 @@ bot = Cinch::Bot.new do
   end
   
   # Respond to messages when mentioned
-  on :message, /TK/ do |m, message|
-    puts "Responding in general"
+  #on :message, /TK/ do |m, message|
+  #  puts "Responding in general"
 
-    uri = URI.parse("#{retort_url}/markov/create")
-    http = Net::HTTP.new(uri.host, uri.port)
+  #  uri = URI.parse("#{retort_url}/markov/create")
+  #  http = Net::HTTP.new(uri.host, uri.port)
 
-    request = Net::HTTP::Get.new(uri.request_uri)
-    response = http.request(request)
+  #  request = Net::HTTP::Get.new(uri.request_uri)
+  #  response = http.request(request)
 
-    m.reply response.body
-  end
+  #  m.reply response.body
+  #end
 end
 
 # Start bot
