@@ -2,6 +2,7 @@ class MarkovChainService
     def self.create_random_chain(maximum_chain_length: 20, identifier: {})
         #todo minimum_chain_length for ipsum
         gram = Bigram.where(identifier.merge({prior: nil})).sample
+        return if gram.nil?
         chain = [nil, gram[:after]]
 
         #todo forward and backward expansion

@@ -39,7 +39,7 @@ bot = Cinch::Bot.new do
 
     m.reply response.body
   end
-
+  
   # Respond to messages when mentioned
   on :message, /TK/ do |m, message|
     puts "Responding in general"
