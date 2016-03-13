@@ -97,8 +97,7 @@
       </div>
       <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
         <h3>Identity Mirroring</h3>
-        <p>Generate text matching personalized linguistic profiles.
-        <br /><sup>Coming soon!</sup></p>
+        <p>Generate text matching personalized linguistic profiles.</p>
       </div>
                 
     </div>
@@ -132,7 +131,7 @@
             <td>GET</td>
             <td>
               <ul class="parameter-list">
-                <li><strong>stimulus*</strong> - a prompt to respond to</li>
+                <li><strong>stimulus</strong> - a prompt to respond to</li>
             </td>
             <td>JSON</td>
           </tr>
@@ -146,8 +145,8 @@
             <td>GET</td>
             <td>
               <ul class="parameter-list">
-                <li><strong>stimulus*</strong> - a prompt to respond to</li>
-                <li><strong>response*</strong> - a valid response</li>
+                <li><strong>stimulus</strong> - a prompt to respond to</li>
+                <li><strong>response</strong> - a valid response</li>
               </ul>
             </td>
             <td>JSON</td>
@@ -208,11 +207,14 @@
                 /bigram/next
               </a>
             </td>
-            <td>Fetch a bigram consequent for an antecedent</td>
+            <td>Fetch a bigram consequent for an antecedent, optionally scoped to an identity</td>
             <td>GET</td>
             <td>
               <ul class="parameter-list">
-                <li><strong>prior*</strong> - bigram antecedent</li>
+                <li><strong>prior</strong> - bigram antecedent</li>
+                <li><strong>identifier*</strong> - username (e.g. drusepth)</li>
+                <li><strong>medium*</strong> - chat medium (e.g. reddit)</li>
+                <li><strong>channel*</strong> - chat channel (e.g. /r/funny)</li>
             </td>
             <td>JSON</td>
           </tr>
@@ -222,11 +224,14 @@
                 /bigram/consequents
               </a>
             </td>
-            <td>Fetches all possible consequents for an antecedent</td>
+            <td>Fetches all possible consequents for an antecedent, optionally scoped to an identity</td>
             <td>GET</td>
             <td>
               <ul class="parameter-list">
-                <li><strong>prior*</strong> - bigram antecedent</li>
+                <li><strong>prior</strong> - bigram antecedent</li>
+                <li><strong>identifier*</strong> - username (e.g. drusepth)</li>
+                <li><strong>medium*</strong> - chat medium (e.g. reddit)</li>
+                <li><strong>channel*</strong> - chat channel (e.g. /r/funny)</li>
               </ul>
             </td>
             <td>JSON</td>
@@ -237,11 +242,14 @@
                 /bigram/antecedents
               </a>
             </td>
-            <td>Fetches all possible antecedents for a consequent</td>
+            <td>Fetches all possible antecedents for a consequent, optionally scoped to an identity</td>
             <td>GET</td>
             <td>
               <ul class="parameter-list">
                 <li><strong>after*</strong> - bigram consequent</li>
+                <li><strong>identifier*</strong> - username (e.g. drusepth)</li>
+                <li><strong>medium*</strong> - chat medium (e.g. reddit)</li>
+                <li><strong>channel*</strong> - chat channel (e.g. /r/funny)</li>
               </ul>
             </td>
             <td>JSON</td>
@@ -252,12 +260,15 @@
                 /bigram/add
               </a>
             </td>
-            <td>Saves a bigram, immediately available for retrieval</td>
+            <td>Saves a bigram, immediately available for retrieval. Can optionally be attributed to an identity</td>
             <td>GET</td>
             <td>
               <ul class="parameter-list">
                 <li><strong>prior*</strong> - bigram antecedent</li>
                 <li><strong>after*</strong> - bigram consequent</li>
+                <li><strong>identifier*</strong> - username (e.g. drusepth)</li>
+                <li><strong>medium*</strong> - chat medium (e.g. reddit)</li>
+                <li><strong>channel*</strong> - chat channel (e.g. /r/funny)</li>
               </ul>
             </td>
             <td>JSON</td>
@@ -268,11 +279,14 @@
                 /bigram/parse
               </a>
             </td>
-            <td>Tokenizes and parses a string into saved bigrams</td>
+            <td>Tokenizes and parses a string into saved bigrams, optionally attributing them to a single identity</td>
             <td>GET</td>
             <td>
               <ul class="parameter-list">
                 <li><strong>message*</strong> - tokenizable string</li>
+                <li><strong>identifier*</strong> - username (e.g. drusepth)</li>
+                <li><strong>medium*</strong> - chat medium (e.g. reddit)</li>
+                <li><strong>channel*</strong> - chat channel (e.g. /r/funny)</li>
               </ul>
             </td>
             <td>JSON</td>

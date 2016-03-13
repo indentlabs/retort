@@ -57,7 +57,10 @@ get "/bigram/add" do
     content_type :json
 
     sliced_params = params.slice('prior', 'after')
-    BigramService.find_or_create_by_hash(bigram_hash: sliced_params).to_json
+    BigramService.find_or_create_by_hash(
+        bigram_hash: sliced_params,
+        identifier: IdentityService.query_parameters(params[:identifier], params[:medium], params[:channel])
+    ).to_json
 end
 
 get "/bigram/next" do
