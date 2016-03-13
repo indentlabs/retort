@@ -28,9 +28,10 @@ bot = Cinch::Bot.new do
     puts "[Bigram] Response #{response.code}: #{response.body}"
   end
 
-  # Respond to messages when mentioned
-  on :message, /TK/ do |m, message|
-    uri = URI.parse("#{retort_url}/markov/create")
+  on :message, /TK: be ([^ ]+)/ do |m, person|
+    puts "Imitating #{person}"
+
+    uri = URI.parse("#{retort_url}/markov/create?identifier=#{person}&medium=irc.amazdong.com&channel=interns")
     http = Net::HTTP.new(uri.host, uri.port)
 
     request = Net::HTTP::Get.new(uri.request_uri)
@@ -39,8 +40,11 @@ bot = Cinch::Bot.new do
     m.reply response.body
   end
 
-  on :message, /TK: be ([^ ]+)/ do |m, person|
-    uri = URI.parse("#{retort_url}/markov/create?identifier=#{person}&medium=irc.amazdong.com&channel=interns")
+  # Respond to messages when mentioned
+  on :message, /TK/ do |m, message|
+    puts "Responding in general"
+
+    uri = URI.parse("#{retort_url}/markov/create")
     http = Net::HTTP.new(uri.host, uri.port)
 
     request = Net::HTTP::Get.new(uri.request_uri)
