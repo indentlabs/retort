@@ -19,7 +19,7 @@ bot = Cinch::Bot.new do
     return if message.include? '#noquo'
     puts "[Bigram] Logging: #{message}"
 
-    uri = URI.parse("#{retort_url}/bigram/parse?message=#{message}")
+    uri = URI.parse("#{retort_url}/bigram/parse?message=#{message}&identifier=#{m.user.nick}&medium=irc.amazdong.com&channel=interns")
     http = Net::HTTP.new(uri.host, uri.port)
 
     request = Net::HTTP::Get.new(uri.request_uri)
