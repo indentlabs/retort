@@ -26,6 +26,9 @@ class Redditor
       # 5-something errors are usually errors on reddit's end.
       raise error unless (500...600).include?(error.code)
       retry
+    rescue
+      puts "eh"
+      retry
     end
   end
 
@@ -37,14 +40,11 @@ class Redditor
 
       # FEED RETORT
       begin
-        uri = URI.parse("http://indent-retort.herokuapp.com/bigram/parse?message=#{comment.body}")
+        uri = URI.parse("http://ea107dce.ngrok.io/bigram/parse?message=#{comment.body}")
         http = Net::HTTP.new(uri.host, uri.port)
         request = Net::HTTP::Get.new(uri.request_uri)
         response = http.request(request)
         puts "Fed Retort"
-      rescue
-        puts "some retort error, dunno lol"
-        # eh
       end
     end
   end
