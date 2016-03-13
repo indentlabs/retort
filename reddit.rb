@@ -36,7 +36,7 @@ class Redditor
 
   def stream_all!
     reddit.stream :get_comments, "all" do |comment|
-      puts "nom nom nom ~"
+      puts "Feeding comment from /u/#{comment.author} on /r/#{comment.subreddit} to Retort ~ nom nom nom"
 
       # FEED RETORT
       begin
