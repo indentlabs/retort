@@ -47,6 +47,10 @@ class Redditor
         puts "Fed Retort"
       end
     end
+  rescue
+    puts "Shit sucks"
+    initialize
+    retry
   end
 end
 
