@@ -38,6 +38,16 @@ bot = Cinch::Bot.new do
 
     m.reply response.body
   end
+
+  on :message, /TK: be ([^ ]+)/ do |m, person|
+    uri = URI.parse("#{retort_url}/markov/create?identifier=#{person}&medium=irc.amazdong.com&channel=interns")
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+
+    m.reply response.body
+  end
 end
 
 # Start bot
