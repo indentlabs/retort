@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924031835) do
+ActiveRecord::Schema.define(version: 20160312230616) do
 
   create_table "bigrams", force: :cascade do |t|
     t.string   "prior"
     t.string   "after"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "identifier"
+    t.string   "medium"
+    t.string   "channel"
   end
 
   create_table "retorts", force: :cascade do |t|
