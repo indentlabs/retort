@@ -39,12 +39,13 @@ end
 get "/markov/ipsum" do
     content_type :json
 
-    5.times.map {
-        6.times.map {
+    result = 4.times.map {
+        5.times.map {
             chain = MarkovChainService.create_random_chain
-            SanitizationService.ipsum_sanitization(chain)
         }.join ' '
     }.join("\n\n")
+
+    SanitizationService.ipsum_sanitization(result)
 end
 
 get "/bigram/list" do
