@@ -115,3 +115,23 @@ get "/retort/get" do
 
     Retort.where(stimulus: params[:stimulus]).sample.to_json
 end
+
+get "/stats" do
+    content_type :json
+
+    {
+        retort_count: Retort.count,
+        # retort_unique_stimulus: Retort.where.not(stimulus: nil).group_by(&:stimulus).count,
+        # retort_unique_response: Retort.where.not(response: nil).group_by(&:response).count,
+
+        bigram_count: Bigram.count,
+        bigram_unique_prior: Bigram.select(:prior).distinct.count,
+        #bigram_unique_after: Bigram.select(:after).distinct.count,
+
+        # bigram_unique_prior: Bigram.where.not(prior: nil).group_by(&:prior).count,
+        # bigram_unique_after: Bigram.where.not(after: nil).group_by(&:after).count,
+        bigram_unique_identifier: Bigram.select(:identifier).distinct.count,
+        # bigram_unique_medium: Bigram.where.not(medium: nil).group_by(&:medium).count,
+        # bigram_unique_channel: Bigram.where.not(channel: nil).group_by(&:channel).count,
+    }.to_json
+end
