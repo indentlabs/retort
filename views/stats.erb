@@ -100,15 +100,15 @@
       </div>
 
       <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
-        <h3><%= Retort.select(:stimulus).distinct.count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+        <h3><%= Retort.count(:stimulus).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
         <p>Unique Retort Stimuli</p>
       </div>
       <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
-        <h3><%= Bigram.select(:prior).distinct.count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+        <h3><%= Bigram.count(:prior).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
         <p>Bigram Antecedents</p>
       </div>
       <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
-        <h3><%= Bigram.select(:after).distinct.count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+        <h3><%= Bigram.count(:after).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
         <p>Bigram Consequents</p>
       </div>
 
