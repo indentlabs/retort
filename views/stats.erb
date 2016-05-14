@@ -178,7 +178,7 @@
 	        <p>Medium</p>
 	      </div>
 	      <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
-	        <h3><%= @channel = Bigram.where.not(channel: "").where.not(channel: nil).where.not(medium: 'irc.amazdong.com')..select(:medium, :channel).group(:medium, :channel).order('count(*) DESC').limit(1).pluck(:medium, :channel).flatten.reject(&:nil?).join('#') %></h3>
+	        <h3><%= @channel = Bigram.where.not(channel: "").where.not(channel: nil).where.not(medium: 'irc.amazdong.com').select(:medium, :channel).group(:medium, :channel).order('count(*) DESC').limit(1).pluck(:medium, :channel).flatten.reject(&:nil?).join('#') %></h3>
 	        <p>Channel</p>
 	      </div>
 
