@@ -39,7 +39,6 @@
           <li> <a href="#services" class="smoothScroll"> Services</a></li>
           <li> <a href="#api" class="smoothScroll"> API</a></li>
           <li> <a href="#team" class="smoothScroll"> Team</a></li>
-<!--          <li> <a href="#contact" class="smoothScroll"> Contact</a></li> -->
         </ul>
       </div>
     </div>
@@ -98,6 +97,19 @@
       <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
         <h3><%= Bigram.count(:identifier, :medium) %></h3>
         <p>Identities</p>
+      </div>
+
+      <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
+        <h3><%= Retort.select(:stimulus).distinct.count %></h3>
+        <p>Unique Retort Stimuli</p>
+      </div>
+      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
+        <h3><%= Bigram.select(:prior).distinct.count %></h3>
+        <p>Bigram Antecedents</p>
+      </div>
+      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
+        <h3><%= Bigram.select(:after).distinct.count %></h3>
+        <p>Bigram Consequents</p>
       </div>
 
     </div>
