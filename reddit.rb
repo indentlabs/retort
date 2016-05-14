@@ -40,7 +40,7 @@ class Redditor
 
       # FEED RETORT
       begin
-        uri = URI.parse("http://ea107dce.ngrok.io/bigram/parse?message=#{comment.body}&identifier=/u/#{comment.author}&medium=reddit&channel=/r/#{comment.subreddit}")
+        uri = URI.parse("http://www.retort.us/bigram/parse?message=#{comment.body}&identifier=/u/#{comment.author}&medium=reddit&channel=/r/#{comment.subreddit}")
         http = Net::HTTP.new(uri.host, uri.port)
         request = Net::HTTP::Get.new(uri.request_uri)
         response = http.request(request)
