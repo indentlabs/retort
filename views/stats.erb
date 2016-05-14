@@ -170,15 +170,15 @@
       <hr>
       <div class="centered">
 	      <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
-	        <h3><%= Bigram.select(:identifier, :medium, :channel).group(:identifier, :medium, :channel).order('count(*)').limit(1).pluck(:identifier, :medium, :channel).first.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <h3><%= Bigram.select(:identifier, :medium).group(:identifier, :medium).order('count(*)').limit(1).pluck(:identifier, :medium).flatten.reject(&:nil?).join('@') %></h3>
 	        <p>Identifier</p>
 	      </div>
 	      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
-	        <h3><%# Bigram.select(:identifier, :medium, :channel).group(:medium).order('count(*)').limit(1).pluck(:identifier, :medium, :channel).first.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <h3><%= Bigram.select(:medium).group(:medium).order('count(*)').limit(1).pluck(:medium).first %></h3>
 	        <p>Medium</p>
 	      </div>
 	      <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
-	        <h3><%# Bigram.select(:identifier, :medium, :channel).group(:channel).order('count(*)').limit(1).pluck(:identifier, :medium, :channel).first.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <h3><%= Bigram.select(:medium, :channel).group(:medium, :channel).order('count(*)').limit(1).pluck(:medium, :channel).flatten.reject(&:nil?).join('#') %></h3>
 	        <p>Channel</p>
 	      </div>
       </div>
