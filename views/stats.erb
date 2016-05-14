@@ -116,6 +116,52 @@
   </div>
 </div>
 
+<div id="portfolio">
+  <div class="container">
+    <div class="row">
+      <h2 class="centered">Added this week</h2>
+      <hr>
+      <div class="centered">
+	      <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
+	        <h3><%= Retort.where('created_at > ?', 7.days.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <p>Retorts</p>
+	      </div>
+	      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
+	        <h3><%= Bigram.where('created_at > ?', 7.days.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <p>Ngrams</p>
+	      </div>
+	      <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
+	        <h3><%= Bigram.where('created_at > ?', 7.days.ago).count(:identifier, :medium).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <p>Identities</p>
+	      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="portfolio">
+  <div class="container">
+    <div class="row">
+      <h2 class="centered">Added this month</h2>
+      <hr>
+      <div class="centered">
+	      <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
+	        <h3><%= Retort.where('created_at > ?', 30.days.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <p>Retorts</p>
+	      </div>
+	      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
+	        <h3><%= Bigram.where('created_at > ?', 30.days.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <p>Ngrams</p>
+	      </div>
+	      <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
+	        <h3><%= Bigram.where('created_at > ?', 30.days.ago).count(:identifier, :medium).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+	        <p>Identities</p>
+	      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div id="footerwrap">
   <div class="container">
