@@ -19,6 +19,12 @@ get "/" do
     erb :"apidocs"
 end
 
+get "/stats" do
+    erb :"stats"
+end
+
+# API
+
 get "/markov/create" do
     content_type :json
 

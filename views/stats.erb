@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Andrew Brown">
+  <title>Retort</title>
+
+  <link href="css/bootstrap.css" rel="stylesheet">
+
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/animate-custom.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+  <script src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body data-spy="scroll" data-offset="0" data-target="#navbar-main">
+<div id="navbar-main">
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <a class="navbar-brand" href="#home"><i class="fa fa-comments"></i> Retort</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#home" class="smoothScroll">Home</a></li>
+          <li> <a href="#about" class="smoothScroll"> About</a></li>
+          <li> <a href="#services" class="smoothScroll"> Services</a></li>
+          <li> <a href="#api" class="smoothScroll"> API</a></li>
+          <li> <a href="#team" class="smoothScroll"> Team</a></li>
+<!--          <li> <a href="#contact" class="smoothScroll"> Contact</a></li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="headerwrap" name="home">
+  <header class="clearfix">
+    <h1>language generation as a service</h1>
+    <p>
+      Lorem ipsum dolor sit amet, cu menandri voluptaria nec ei.<br>
+      <em>Except in English.</em>
+    </p>
+    <a href="/#portfolio" class="smoothScroll btn btn-lg">Explore the API</a>
+  </header>
+</div>
+
+<div id="about" name="about">
+  <div class="container">
+    <div class="row white">
+      <div class="col-md-6"> <img class="img-responsive" src="img/about/about1.jpg" align=""> </div>
+      <div class="col-md-6">
+        <h3>About Retort</h3>
+
+        <p>
+          Retort is a collection of natural language generation APIs for easily adding and maintaining natural language in your applications. A set of API endpoints allow for incredibly easy language generation, stimulus response, markov chains, and other common tasks.
+        </p>
+
+        <h3>Proudly powered by <a href="http://indentlabs.com">Indent Labs</a></h3>
+        <p>
+          Indent Labs is, at its core, an ambitious open-source collection of natural language processing projects aimed squarely at moonshots in the field of writing. The first word processor showed up in the 60s and revolutionized writing through technology. Isn't it time for another shift forward?
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="services" name="services">
+  <div class="container">
+    <div class="row">
+      <h2 class="centered">Stats</h2>
+      <hr>
+      <div class="col-lg-8 col-lg-offset-2">
+        <p class="large">
+          Up to date as of <%= Time.now.strftime("%m/%d/%y %I:%M%p") %>
+        </p>
+      </div>
+      <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
+        <h3><%= Retort.count %></h3>
+        <p>Retorts</p>
+      </div>
+      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
+        <h3><%= Bigram.count %></h3>
+        <p>Ngrams</p>
+      </div>
+      <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
+        <h3><%= Bigram.count(:identifier, :medium) %></h3>
+        <p>Identities</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="footerwrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <span class="copyright">
+          Proudly powered by <a href="http://www.indentlabs.com">Indent Labs</a>.
+          Design by <a href="http://www.templategarden.com" rel="nofollow">TemplateGarden</a>
+        </span>
+      </div>
+      <div class="col-md-4">
+        <a href="https://github.com/indentlabs/retort">Source Code</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/retina.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/smoothscroll.js"></script>
+<script type="text/javascript" src="js/jquery-func.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39217500-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
