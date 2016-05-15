@@ -24,6 +24,16 @@ class Twitterer
         puts "Feeding #{tweet.user.screen_name}'s message: #{tweet.text}"
         parse_ngram(tweet.user.screen_name, tweet.text)
       end
+
+      if (Time.now.to_i % 10) < 1
+        puts "Tweeting"
+        tweet_generator_url = 'http://www.retort.us/markov/create?medium=twitter'
+        tweet = get(tweet_generator_url)
+        client.update tweet
+      else
+        puts "Not tweeting"
+      end
+
       puts "Resting"
       sleep 60
     end
@@ -38,6 +48,16 @@ class Twitterer
     response = http.request(request)
   rescue
     puts "Error making request to Retort for #{user}: #{text}"
+  end
+
+  def get url
+    uri = URI.parse(URI.escape url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    response.body
+  rescue
+    # shiiiit
   end
 end
 

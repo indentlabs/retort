@@ -120,21 +120,44 @@
 <div id="portfolio">
   <div class="container">
     <div class="row">
+      <h2 class="centered">Added today</h2>
+      <hr>
+      <div class="centered">
+        <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
+          <h3><%= Retort.where('created_at > ?', 1.day.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+          <p>Retorts</p>
+        </div>
+        <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
+          <h3><%= Bigram.where('created_at > ?', 1.day.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+          <p>Ngrams</p>
+        </div>
+        <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
+          <h3><%= Bigram.where('created_at > ?', 1.day.ago).count(:identifier, :medium).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+          <p>Identities</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="portfolio">
+  <div class="container">
+    <div class="row">
       <h2 class="centered">Added this week</h2>
       <hr>
       <div class="centered">
-	      <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
-	        <h3><%= Retort.where('created_at > ?', 7.days.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
-	        <p>Retorts</p>
-	      </div>
-	      <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
-	        <h3><%= Bigram.where('created_at > ?', 7.days.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
-	        <p>Ngrams</p>
-	      </div>
-	      <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
-	        <h3><%= Bigram.where('created_at > ?', 7.days.ago).count(:identifier, :medium).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
-	        <p>Identities</p>
-	      </div>
+        <div class="col-lg-4 callout"> <i class="fa fa-comment-o fa-3x"></i>
+          <h3><%= Retort.where('created_at > ?', 7.days.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+          <p>Retorts</p>
+        </div>
+        <div class="col-lg-4 callout"> <i class="fa fa-chain fa-3x"></i>
+          <h3><%= Bigram.where('created_at > ?', 7.days.ago).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+          <p>Ngrams</p>
+        </div>
+        <div class="col-lg-4 callout"> <i class="fa fa-copy fa-3x"></i>
+          <h3><%= Bigram.where('created_at > ?', 7.days.ago).count(:identifier, :medium).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+          <p>Identities</p>
+        </div>
       </div>
     </div>
   </div>
@@ -163,7 +186,7 @@
   </div>
 </div>
 
-<div id="portfolio">
+<div id="services" name="stats">
   <div class="container">
     <div class="row">
       <h2 class="centered">Most-known identities</h2>
@@ -186,7 +209,7 @@
           <h3><%= Bigram.where(identifier: @identifier.split('@').first).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
           <p>Ngrams for <%= @identifier.split('@').first %></p>
           <p>
-            <a href="/markov/create?identifier=<%= @identifier.split('@').first %>">
+            <a href="/markov/create?identifier=<%= @identifier.split('@').first %>" style="color: white">
               Mirror this identifier
             </a>
           </p>
@@ -195,7 +218,7 @@
           <h3><%= Bigram.where(medium: @medium).count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
           <p>Ngrams for <%= @medium %></p>
           <p>
-            <a href="/markov/create?medium=<%= @medium %>">
+            <a href="/markov/create?medium=<%= @medium %>" style="color: white">
               Mirror this medium
             </a>
           </p>
@@ -205,7 +228,7 @@
           <p>Ngrams for <%= @channel.split('#').last %></p>
           <p>
 
-            <a href="/markov/create?channel=<%= @channel.split('#').last %>">
+            <a href="/markov/create?channel=<%= @channel.split('#').last %>" style="color: white">
               Mirror this channel
             </a>
           </p>
