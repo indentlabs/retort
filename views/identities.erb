@@ -1,3 +1,10 @@
 <% @mediums.each do |medium| %>
   <h1>Medium: <%= medium || 'No medium' %></h1>
+  <% Bigram.where(medium: medium).distinct(:channel).pluck(:channel).each do |channel| %>
+    <h2>Channel: <%= channel || 'No channel' %>
+
+    <ul>
+    </ul>
+
+  <% end %>
 <% end %>
