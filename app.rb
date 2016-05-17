@@ -42,6 +42,19 @@ get "/identities/mediums" do
     mediums.to_json
 end
 
+get "/identities/mediums/count" do
+    # TODO: abstract this and /identities/mediums to the same function and just call .count
+    # TODO: add these /count endpoints to /identities/channels and /identities/identifiers
+    content_type :json
+
+    mediums = Bigram.distinct(:medium)
+    mediums = mediums.where(channel: params[:channel]) if params[:channel]
+    mediums = mediums.where(identifier: params[:identifier]) if params[:identifier]
+    mediums = mediums.pluck(:medium)
+
+    mediums.count.to_json
+end
+
 get "/identities/channels" do
     content_type :json
 
