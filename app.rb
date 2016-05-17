@@ -31,6 +31,39 @@ end
 
 # API
 
+get "/identities/mediums" do
+    content_type :json
+
+    mediums = Bigram.distinct(:medium)
+    mediums = mediums.where(channel: params[:channel]) if params[:channel]
+    mediums = mediums.where(identifier: params[:identifier]) if params[:identifier]
+    mediums = mediums.pluck(:medium)
+
+    mediums.to_json
+end
+
+get "/identities/channels" do
+    content_type :json
+
+    channels = Bigram.distinct(:channel)
+    channels = channels.where(medium: params[:medium]) if params[:medium]
+    channels = channels.where(identifier: params[:identifier]) if params[:identifier]
+    channels = channels.pluck(:channel)
+
+    channels.to_json
+end
+
+get "/identities/identifiers" do
+    content_type :json
+
+    identifiers = Bigram.distinct(:identifier)
+    identifiers = identifiers.where(medium: params[:medium]) if params[:medium]
+    identifiers = identifiers.where(channel: params[:channel]) if params[:channel]
+    identifiers = identifiers.pluck(:identifier)
+
+    identifiers.to_json
+end
+
 get "/markov/create" do
     content_type :json
 
