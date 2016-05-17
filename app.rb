@@ -31,6 +31,8 @@ end
 
 # API
 
+# TODO: scope everything here under /api/v1/
+
 get "/identities/mediums" do
     content_type :json
 
@@ -40,19 +42,6 @@ get "/identities/mediums" do
     mediums = mediums.pluck(:medium)
 
     mediums.to_json
-end
-
-get "/identities/mediums/count" do
-    # TODO: abstract this and /identities/mediums to the same function and just call .count
-    # TODO: add these /count endpoints to /identities/channels and /identities/identifiers
-    content_type :json
-
-    mediums = Bigram.distinct(:medium)
-    mediums = mediums.where(channel: params[:channel]) if params[:channel]
-    mediums = mediums.where(identifier: params[:identifier]) if params[:identifier]
-    mediums = mediums.pluck(:medium)
-
-    mediums.count.to_json
 end
 
 get "/identities/channels" do
@@ -75,6 +64,17 @@ get "/identities/identifiers" do
     identifiers = identifiers.pluck(:identifier)
 
     identifiers.to_json
+end
+
+get "/ngrams/count" do
+    content_type :json
+
+    ngrams = Bigram
+    ngrams = ngrams.where(medium: params[:medium]) if params[:medium]
+    ngrams = ngrams.where(channel: params[:channel]) if params[:channel]
+    ngrams = ngrams.where(identifier: params[:identifier]) if params[:identifier]
+
+    ngrams.count.to_json
 end
 
 get "/markov/create" do
