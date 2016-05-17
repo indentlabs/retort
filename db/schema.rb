@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312230616) do
+ActiveRecord::Schema.define(version: 20160517205104) do
 
   create_table "bigrams", force: :cascade do |t|
     t.string   "prior"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20160312230616) do
     t.string   "medium"
     t.string   "channel"
   end
+
+  add_index "bigrams", ["after"], name: "index_bigrams_on_after"
+  add_index "bigrams", ["prior"], name: "index_bigrams_on_prior"
 
   create_table "retorts", force: :cascade do |t|
     t.string   "stimulus"
