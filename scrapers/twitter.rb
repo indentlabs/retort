@@ -29,7 +29,11 @@ class Twitterer
         puts "Tweeting"
         tweet_generator_url = 'http://www.retort.us/markov/create?medium=twitter'
         tweet = get(tweet_generator_url)
-        client.update tweet
+        begin
+          client.update tweet
+        rescue
+          puts "Couldn't tweet -- sorry!"
+        end
       else
         puts "Not tweeting"
       end
