@@ -69,12 +69,12 @@ end
 get "/ngrams/count" do
     content_type :json
 
-    ngrams = Bigram
+    ngrams = Bigram.distinct
     ngrams = ngrams.where(medium: params[:medium]) if params[:medium]
     ngrams = ngrams.where(channel: params[:channel]) if params[:channel]
     ngrams = ngrams.where(identifier: params[:identifier]) if params[:identifier]
 
-    ngrams.count.to_json
+    ngrams.to_json
 end
 
 get "/markov/create" do

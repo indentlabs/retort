@@ -1,10 +1,42 @@
+<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+
 <% @mediums.each do |medium| %>
-  <h1>Medium: <%= medium || 'No medium' %></h1>
-  <% Bigram.where(medium: medium).distinct(:channel).pluck(:channel).each do |channel| %>
-    <h2>Channel: <%= channel || 'No channel' %>
-
-    <ul>
-    </ul>
-
-  <% end %>
+  <div class="medium-container">
+    <h1 class="medium"><%= medium || 'No medium' %></h1>
+  </div>
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.medium').click(function () {
+    console.log('fetching channels for ' + $(this).text());
+
+    var medium_container = $(this).parent();
+    $.get('/identities/channels?medium=' + $(this).text(), function(data) {
+      var list = $('<ul />');
+      for (i in data) {
+        var li = $('<li />').text(data[i]).addClass('channel');
+        list.append(li);
+      }
+      medium_container.append(list);
+    });
+  });
+
+  $('.medium-container').on('click', 'li.channel', function () {
+    var medium = $(this).closest('.medium-container').find('.medium').text();
+    console.log('fetching identities for medium=' + medium + '&channel=' + $(this).text());
+
+    var identity_container = $(this);
+    $.get('/identities/identifiers?medium=' + medium + '&channel=' + $(this).text(), function(data) {
+      var list = $('<ul />');
+      for (i in data) {
+        var li = $('<li />').text(data[i]).addClass('identity');
+        list.append(li);
+      }
+      identity_container.append(list);
+    });
+  });
+
+});
+
+</script>
