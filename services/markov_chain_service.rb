@@ -10,11 +10,20 @@ class MarkovChainService
 
         # TODO: forward and backward expansion
         # TODO: better cyclic detection
-        while (gram = Bigram.where(identifier.merge({prior: chain.last})).where.not(after: chain.last).take(1).first)
-            puts "NEXT WORD: #{gram[:after]}"
+        loop do
+            id_conditions = identifier.merge({prior: chain.last})
+
+            count = Bigram.where(id_conditions).where.not(after: chain.last).count
+            gram = Bigram.where(id_conditions).where.not(after: chain.last).offset(rand count).take(1).first
+
+            #gram = Bigram.where(id_conditions).where.not(after: chain.last).sample
+
+            break unless gram
             break if chain.length > maximum_chain_length
             break if gram[:after].nil?
             next if gram[:after].empty?
+
+            #puts "NEXT WORD: #{gram[:after]}"
 
             chain << gram[:after]
         end

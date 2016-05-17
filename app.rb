@@ -98,7 +98,7 @@ get "/markov/ipsum" do
     content_type :json
 
     result = 4.times.map {
-        5.times.map {
+        4.times.map {
             chain = MarkovChainService.create_random_chain
         }.join ' '
     }.join("\n\n")
