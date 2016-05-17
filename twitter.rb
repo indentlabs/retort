@@ -25,7 +25,7 @@ class Twitterer
         parse_ngram(tweet.user.screen_name, tweet.text)
       end
 
-      if (Time.now.to_i % 10) < 1
+      if rand(10) < 1
         puts "Tweeting"
         tweet_generator_url = 'http://www.retort.us/markov/create?medium=twitter'
         tweet = get(tweet_generator_url)
