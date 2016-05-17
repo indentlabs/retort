@@ -48,7 +48,7 @@ get "/identities/channels" do
     content_type :json
 
     channels = Bigram.distinct(:channel)
-    channels = channels.where(medium: params[:medium]) if params[:medium]
+    channels = channels.where(medium: params[:medium]) if params[:medium] && params[:medium] != 'All mediums'
     channels = channels.where(identifier: params[:identifier]) if params[:identifier]
     channels = channels.pluck(:channel)
 
@@ -59,8 +59,8 @@ get "/identities/identifiers" do
     content_type :json
 
     identifiers = Bigram.distinct(:identifier)
-    identifiers = identifiers.where(medium: params[:medium]) if params[:medium]
-    identifiers = identifiers.where(channel: params[:channel]) if params[:channel]
+    identifiers = identifiers.where(medium: params[:medium]) if params[:medium] && params[:medium] != 'All mediums'
+    identifiers = identifiers.where(channel: params[:channel]) if params[:channel] && params[:channel] != 'All channels'
     identifiers = identifiers.pluck(:identifier)
 
     identifiers.to_json

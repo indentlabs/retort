@@ -2,17 +2,18 @@
 
 <% @mediums.each do |medium| %>
   <div class="medium-container">
-    <h1 class="medium"><%= medium || 'No medium' %></h1>
+    <h1 class="medium"><%= medium || 'All mediums' %></h1>
   </div>
 <% end %>
 
 <script type="text/javascript">
 $(document).ready(function() {
   $('.medium').click(function () {
-    console.log('fetching channels for ' + $(this).text());
+    var medium = $(this).text();
+    console.log('fetching channels for ' + medium);
 
     var medium_container = $(this).parent();
-    $.get('/identities/channels?medium=' + $(this).text(), function(data) {
+    $.get('/identities/channels?medium=' + medium, function(data) {
       var list = $('<ul />');
       for (i in data) {
         var li = $('<li />').text(data[i]).addClass('channel');
