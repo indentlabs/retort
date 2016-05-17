@@ -1,0 +1,23 @@
+<% @mediums.each do |medium| %>
+  <h1>Medium: <%= medium || 'No medium' %></h1>
+  <% Bigram.where(medium: medium).distinct(:channel).pluck(:channel).each do |channel| %>
+    <h2>Channel: <%= channel || 'No channel' %>
+
+    <ul>
+    <% Bigram.where(medium: medium, channel: channel).distinct(:identifier).pluck(:identifier).each do |identifier| %>
+      <li>
+        Identifier:
+        <% params = [] %>
+        <% params << "medium=#{medium}" if medium %>
+        <% params << "channel=#{channel}" if channel %>
+        <% params << "identifier=#{identifier}" if identifier %>
+
+        <a href="/markov/create?x&<%= params.join('&') %>">
+          <%= identifier || 'No identifier' %>
+        </a>
+      </li>
+    <% end %>
+    </ul>
+
+  <% end %>
+<% end %>

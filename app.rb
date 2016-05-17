@@ -23,6 +23,12 @@ get "/stats" do
     erb :"stats"
 end
 
+get "/identities" do
+    @mediums = Bigram.distinct(:medium).pluck(:medium)
+
+    erb :"identities"
+end
+
 # API
 
 get "/markov/create" do
