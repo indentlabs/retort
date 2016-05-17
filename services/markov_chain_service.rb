@@ -1,13 +1,15 @@
 class MarkovChainService
     def self.create_random_chain(maximum_chain_length: 20, identifier: {})
-        #todo minimum_chain_length for ipsum
-        gram = Bigram.where(identifier.merge({prior: nil})).sample
+        # TODO: minimum_chain_length for ipsum
+        # TODO: benchmark tests
+        # TODO: support Trigrams
+        gram = Bigram.where(identifier.merge({prior: nil})).order('random()').take(1).first
         return '' if gram.nil?
         chain = [nil, gram[:after]]
 
-        #todo forward and backward expansion
-        #todo better cyclic detection
-        while (gram = Bigram.where(identifier.merge({prior: chain.last})).where.not(after: chain.last).sample)
+        # TODO: forward and backward expansion
+        # TODO: better cyclic detection
+        while (gram = Bigram.where(identifier.merge({prior: chain.last})).where.not(after: chain.last).order('random()').take(1).first)
             break if chain.length > maximum_chain_length
             break if gram[:after].nil?
             next if gram[:after].empty?
