@@ -27,7 +27,7 @@ class SanitizationService
 		message = match_parentheses message
 
 		TokenService.tokenize_sentences(message).collect do |sentence|
-			sentence += '.' unless sentence.ends_in_terminal_point?
+			sentence += '.' unless sentence.ends_in_terminal_point? || sentence.ends_in_unterminated_punctuation?
 			sentence
 		end.join ' '
 	end
