@@ -55,7 +55,7 @@ class Twitterer
   end
 
   def get url
-    uri = URI.parse(URI.escape url)
+    uri = URI.parse(::URI.escape url)
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)

@@ -4,7 +4,7 @@ require 'cinch'
 require 'net/http'
 require 'uri'
 
-retort_url = 'http://ea107dce.ngrok.io'
+retort_url = 'http://www.retort.us'
 
 bot = Cinch::Bot.new do
   configure do |c|
