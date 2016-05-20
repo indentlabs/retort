@@ -41,7 +41,7 @@ bot = Cinch::Bot.new do
 
     m.reply response.body
   end
-  
+
   on :message, /TK: be someone from ([^ ]+)/ do |m, medium|
     puts "Imitating someone from #{medium}"
 
@@ -55,7 +55,20 @@ bot = Cinch::Bot.new do
 
     m.reply response.body
   end
-  
+
+  on :message, /TK: preach to ([^ ]+)/ do |m, recipient|
+    puts "Preaching to #{recipient}"
+
+    gospel = "#{retort_url}/markov/create?medium=bible"
+    uri = URI.parse(gospel)
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+
+    m.reply "#{recipient}: #{response.body}"
+  end
+
   # Respond to messages when mentioned
   #on :message, /TK/ do |m, message|
   #  puts "Responding in general"
