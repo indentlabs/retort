@@ -4,6 +4,7 @@ class SanitizationService
 		message = trim_whitespace message
 		message = capitalize_properly message
 		message = punctuate_properly message
+		message = remove_biblical_chapters message
 
 		message
 	end
@@ -34,6 +35,11 @@ class SanitizationService
 
 	def self.remove_links(message)
 		TokenService.tokenize(message).reject(&:is_a_link?).join ' '
+	end
+
+	def self.remove_biblical_chapters(message)
+		# Many biblical passages begin with ^5Text/etc, this removes the ^digit.
+		message.gsub(/^\^\d+/, '')
 	end
 
 	def self.match_parentheses(message)
