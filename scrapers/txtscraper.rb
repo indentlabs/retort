@@ -39,7 +39,7 @@ class Scraper
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
   rescue
-    puts "Error making request to Retort for #{user}: #{text}"
+    puts "Error making request to Retort for \"#{text}\""
   end
 
   def get url
