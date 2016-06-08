@@ -13,7 +13,7 @@ class String
 	end
 
 	def ends_in_unterminated_punctuation?
-		[',', ';', '~'].include? (slice(-1) || '')
+		[',', ';', ':', '~'].include? (slice(-1) || '')
 	end
 
 	def is_a_link?
