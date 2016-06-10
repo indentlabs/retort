@@ -5,6 +5,7 @@ class SanitizationService
 		message = capitalize_properly message
 		message = punctuate_properly message
 		message = remove_biblical_chapters message
+		message = swap_special_characters message
 
 		message
 	end
@@ -42,6 +43,13 @@ class SanitizationService
 		# Many biblical passages begin with ^5Text/etc, this removes the ^digit.
 		message.gsub(/^\^\d+/, '')
 	end
+
+	def self.swap_special_characters(message)
+		message.gsub('â€œ', '"') # left smart quote
+			.gsub('â€™', "'")    # smart '
+			.gsub('â€', '"')	 # right smart quote
+	end
+
 
 	def self.match_parentheses(message)
 		opening_parentheses = message.count "("

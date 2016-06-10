@@ -42,7 +42,7 @@ bot = Cinch::Bot.new do
     m.reply response.body
   end
 
-  on :message, /TK: be someone from ([^ ]+)/ do |m, medium|
+  on :message, /TK: be someone from (.+)/ do |m, medium|
     puts "Imitating someone from #{medium}"
 
     src = "#{retort_url}/markov/create?medium=#{medium}"

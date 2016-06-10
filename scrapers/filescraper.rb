@@ -55,5 +55,7 @@ unless url
   exit 1
 end
 
+puts "ENV VARS: IDENTIFIER=#{ENV['IDENTIFIER']}, CHANNEL=#{ENV['CHANNEL']}, MEDIUM=#{ENV['MEDIUM']}"
+
 ankov = Scraper.new
 ankov.scrape url
