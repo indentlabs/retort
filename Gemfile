@@ -9,6 +9,8 @@ gem 'sinatra-redirect-with-flash'
 gem 'rake'
 gem 'json'
 
+gem 'minitest'
+
 group :development do
   gem 'sqlite3'
   gem "tux"
