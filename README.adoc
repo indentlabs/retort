@@ -6,16 +6,16 @@ image:https://travis-ci.org/indentlabs/retort.svg?branch=master["Build Status", 
 == What you can do
 
  - Create a bigram:
-https://indent-retort.herokuapp.com/bigram/add?prior=there&after=you[/bigram/add?prior=there&after=you, window="_blank"]
+https://indent-retort.herokuapp.com/bigram/add?prior=there&after=you[/bigram/add?prior=there&after=you^]
 
  - Generate next word in a bigram:
-https://indent-retort.herokuapp.com/bigram/next?prior=there[/bigram/next?prior=there, window="_blank"]
+https://indent-retort.herokuapp.com/bigram/next?prior=there[/bigram/next?prior=there^]
 
  - Create a retort:
-https://indent-retort.herokuapp.com/retort/add?stimulus=hey&response=sup[/retort/add?stimulus=hey&response=sup, window="_blank"]
+https://indent-retort.herokuapp.com/retort/add?stimulus=hey&response=sup[/retort/add?stimulus=hey&response=sup^]
 
  - Fetch retort from stimulus:
-https://indent-retort.herokuapp.com/retort/get?stimulus=hey[/retort/get?stimulus=hey, window="_blank"]
+https://indent-retort.herokuapp.com/retort/get?stimulus=hey[/retort/get?stimulus=hey^]
 
 See our https://www.retort.us/#api[API documentation], and try it for yourself!
 
