@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby "2.2.3"
 
 gem "sinatra"
 gem "activerecord"
@@ -9,6 +8,8 @@ gem 'sinatra-redirect-with-flash'
 
 gem 'rake'
 gem 'json'
+
+gem 'minitest'
 
 group :development do
   gem 'sqlite3'
