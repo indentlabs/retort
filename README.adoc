@@ -1,13 +1,21 @@
-Create a bigram:
-https://indent-retort.herokuapp.com/bigram/add?prior=there&after=you
+= Retort: Language Generation as a Service
 
-Generate next word in a bigram:
-https://indent-retort.herokuapp.com/bigram/next?prior=there
+image:https://travis-ci.org/indentlabs/retort.svg?branch=master["Build Status", link="https://travis-ci.org/indentlabs/retort"]
 
-Create a retort:
-https://indent-retort.herokuapp.com/retort/add?stimulus=hey&response=sup
+== What you can do
 
-Fetch retort from stimulus:
-https://indent-retort.herokuapp.com/retort/get?stimulus=hey
+ - Create a bigram:
+https://indent-retort.herokuapp.com/bigram/add?prior=there&after=you[/bigram/add?prior=there&after=you]
 
-You might have to copy/paste URLs from GitHub rather than clicking them if you get a Forbidden API error.
+ - Generate next word in a bigram:
+https://indent-retort.herokuapp.com/bigram/next?prior=there[/bigram/next?prior=there]
+
+ - Create a retort:
+https://indent-retort.herokuapp.com/retort/add?stimulus=hey&response=sup[/retort/add?stimulus=hey&response=sup]
+
+ - Fetch retort from stimulus:
+https://indent-retort.herokuapp.com/retort/get?stimulus=hey[/retort/get?stimulus=hey]
+
+See our https://www.retort.us/#api[API documentation], and try it for yourself!
+
+Copyright (C) Andrew Brown 2016
