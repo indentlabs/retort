@@ -177,5 +177,5 @@ end
 get "/retort/random/opening" do
     content_type :json
 
-    Retort.where.not(response: nil).sample.to_json
+    Retort.where.not(stimulus: nil).sample.to_json
 end
