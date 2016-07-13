@@ -173,3 +173,9 @@ get "/retort/get" do
 
     Retort.where(stimulus: params[:stimulus]).sample.to_json
 end
+
+get "/retort/random/opening" do
+    content_tyoe :json
+
+    Retort.where(stimulus: nil).sample.to_json
+end
