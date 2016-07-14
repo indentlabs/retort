@@ -91,7 +91,7 @@ describe SanitizationService do
     it 'swaps right UTF-8 single quote for regular apostrophe' do
       SanitizationService
         .swap_special_characters('’')
-        .must_equal('’')
+        .must_equal("'")
     end
   end
   
