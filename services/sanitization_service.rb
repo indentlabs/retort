@@ -1,3 +1,7 @@
+# encoding: utf-8
+
+require_relative 'token_service'
+
 class SanitizationService
 	def self.standard_sanitization(message)
 		message = remove_links message
@@ -45,9 +49,9 @@ class SanitizationService
 	end
 
 	def self.swap_special_characters(message)
-		message.gsub('â€œ', '"') # left smart quote
-			.gsub('â€™', "'")    # smart '
-			.gsub('â€', '"')	 # right smart quote
+		message.gsub('“', '"') # left smart quote
+			.gsub('’', "'")    # smart '
+			.gsub('”', '"')	 # right smart quote
 	end
 
 
