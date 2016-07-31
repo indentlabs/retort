@@ -28,6 +28,17 @@ bot = Cinch::Bot.new do
     puts "[Bigram] Response #{response.code}: #{response.body}"
   end
 
+  # Process command directed at TK
+  on :message, /TK: (.+)/ do |m, command|
+    return unless ENV['WIT_TOKEN']
+    puts "\tProcessing command:[#{command}](#{command.class.name})"
+
+    intel = wit.message(command)
+    puts "\tGot response"
+    puts "\tWit response: #{intel}"
+
+  end
+
   on :message, /TK: be ([^ ]+)/ do |m, person|
     puts "Imitating #{person}"
 
