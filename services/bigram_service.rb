@@ -19,11 +19,11 @@ class BigramService
     end
 
     def self.random_word_before(word:, identifier: {})
-        bigram = Bigram.where(identifier).where("lower(after) = ?", word).sample
+        bigram = Bigram.where(identifier).where("lower(after) = ?", word.downcase).sample
     end
 
     def self.random_word_after(word:, identifier: {})
-        bigram = Bigram.where(identifier).where("lower(prior) = ?", word).sample
+        bigram = Bigram.where(identifier).where("lower(prior) = ?", word.downcase).sample
     end
 
     def self.all_possible_words_before(word:, identifier: {})
