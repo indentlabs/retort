@@ -127,7 +127,7 @@ get "/bigram/prior" do
 
     BigramService.random_word_before(
         word: params[:after],
-        identifier: IdentityService.query_parameters(params[:identifier], params[:medium], params[:channel]
+        identifier: IdentityService.query_parameters(params[:identifier], params[:medium], params[:channel])
     ).to_json
 end
 
@@ -136,7 +136,7 @@ get "/bigram/next" do
 
     BigramService.random_word_before(
         word: params[:prior],
-        identifier: IdentityService.query_parameters(params[:identifier], params[:medium], params[:channel]
+        identifier: IdentityService.query_parameters(params[:identifier], params[:medium], params[:channel])
     ).to_json
 end
 
