@@ -122,6 +122,12 @@ get "/bigram/add" do
     ).to_json
 end
 
+get "/bigram/prior" do
+    content_type :json
+
+    BigramService.random_word_before(word: params[:after]).to_json
+end
+
 get "/bigram/next" do
     content_type :json
 

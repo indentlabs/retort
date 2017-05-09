@@ -5,7 +5,6 @@ class MarkovChainService
         # TODO: support Trigrams
         gram = Bigram.where(identifier.merge({prior: nil})).order('random()').take(1).first
         return '' if gram.nil?
-        puts "STARTING WITH ORIGIN: #{gram[:after]}"
         chain = [nil, gram[:after]]
 
         # TODO: forward and backward expansion
@@ -15,7 +14,6 @@ class MarkovChainService
 
             count = Bigram.where(id_conditions).where.not(after: chain.last).count
             gram = Bigram.where(id_conditions).where.not(after: chain.last).offset(rand count).take(1).first
-
             #gram = Bigram.where(id_conditions).where.not(after: chain.last).sample
 
             break unless gram
