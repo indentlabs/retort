@@ -125,13 +125,19 @@ end
 get "/bigram/prior" do
     content_type :json
 
-    BigramService.random_word_before(word: params[:after]).to_json
+    BigramService.random_word_before(
+        word: params[:after],
+        identifier: IdentityService.query_parameters(params[:identifier], params[:medium], params[:channel]
+    ).to_json
 end
 
 get "/bigram/next" do
     content_type :json
 
-    BigramService.random_word_after(word: params[:prior]).to_json
+    BigramService.random_word_before(
+        word: params[:prior],
+        identifier: IdentityService.query_parameters(params[:identifier], params[:medium], params[:channel]
+    ).to_json
 end
 
 get "/bigram/antecedents" do
