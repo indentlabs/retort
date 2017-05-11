@@ -1,14 +1,22 @@
 require 'httparty'
 require 'rhymes'
 
-require 'pry'
+rhyme_schemes = {
+  alternate_rhyme: 'ABAB CDCD EFEF GHGH',
+  ballade:         'ABABBCBC ABABBCBC ABABBCBC BCBC',
+  monorhyme:       'AAAA AAAA AAAA',
+  couplet:         'AA BB CC DD',
+  enclosed:        'ABBA',
+  limerick:        'AABBA',
+  terza_rima:      'ABA BCB CDC DED',
+  keats_odes:      'ABABCDECDE',
+  sonnet:          'ABAB CDCD EFEF GG'
+}
+rhyme_scheme = rhyme_schemes[:limerick]
 
-rhyme_scheme = 'AABB CCDD EEFF GG'
-rhymes = {}
-rap_lines = []
-
+# Generate a random word that we've seen Kanye use prior to the given word
 def previous_word after
-  url = "http://www.retort.us/bigram/prior?after=#{after}&medium=music&identifier=kanyewest"
+  url = "http://www.retort.us/bigram/prior?after=#{after}&medium=bible"
   json = JSON.parse(HTTParty.get(url).body)
 
   puts "#{json['prior']} --> #{after}"
@@ -19,19 +27,21 @@ rescue
   nil
 end
 
+# Generate a fully random line
 def full_line
-  url = "http://www.retort.us/markov/create?medium=music&identifier=kanyewest"
+  url = "http://www.retort.us/markov/create?medium=bible"
   HTTParty.get(url).body
 end
 
+# Returns all possible rhymes for a word
 def rhymes_for word
-  word = 'land' if word == 'and'
+  word = 'land' if word == 'and' # workaround for rhymes gem not finding any rhymes for "and"
   Rhymes.rhyme(word.gsub /\W+/, '').map(&:downcase)
 rescue Rhymes::UnknownWord
   []
 end
 
-
+# Recursively generate a poem line by line
 def generate_next_line_for rhyming_scheme, poem_lines
   # If we've reached the end of the rhyming scheme, we can return the full poem!
   if poem_lines.length == rhyming_scheme.length
@@ -58,8 +68,13 @@ def generate_next_line_for rhyming_scheme, poem_lines
     line = full_line
     puts "Line generated: #{line}"
 
-    while line.split(' ').length < 6
+    while line.split(' ').length < 4
       puts "Full line generated is too short! Regenerating this line..."
+      line = full_line
+    end
+
+    while line.split(' ').length > 14
+      puts "Full line generated is too long! Regenerating this line..."
       line = full_line
     end
 
@@ -130,63 +145,10 @@ def generate_next_line_for rhyming_scheme, poem_lines
     # If no rhyming words were usable, start over :(
     return nil
   end
-
 end
-
 
 puts "Generating poem with rhyme scheme #{rhyme_scheme}."
 poem = generate_next_line_for(rhyme_scheme, [])
 
-puts "POEM CREATED! (WOOOOOO)"
+puts "POEM CREATED\n===================================="
 puts poem
-
-
-# # First line is random
-# first_line = full_line
-
-# rhyme_scheme.chars.each do |rhyme|
-#   # Add breaks between verses
-#   rap_lines.concat [''] if rhyme == ' '
-
-#   # If we're on a line without a previous rhyme, generate a random line
-#   if rhymes.key?(rhyme) == false
-#     line = full_line
-
-#     # And set the final word of the line as the word to rhyme with in the future
-#     rhymes[rhyme] = line.split(' ').last
-
-#   # If we're on a line WITH a previous rhyme, we want to ask for rhyming words and build back from there
-#   else
-#     rhyming_words = rhymes_for rhymes[rhyme]
-#     puts "Rhyming words for #{rhymes[rhyme]}: #{rhyming_words}"
-
-#     # Then, go through each word and try to find one we can build backwards from
-#     line = []
-#     rhyming_words.shuffle.each do |potential_rhyme|
-#       puts "Looking for rhymes for #{potential_rhyme}..."
-#       previous_word_for_this_rhyme = previous_word(potential_rhyme)
-#       if previous_word_for_this_rhyme
-#         # If we find a word to use, set it and break to ignore the other rhyming words
-#         line = [previous_word_for_this_rhyme, potential_rhyme]
-#         break
-#       end
-#     end
-
-#     # Lazily fail if we don't have any workable rhymes (run script again)
-#     fail if line.length == 0
-
-#     # Now, work back from the left-most word until we reach a START token (or a good length)
-#     while line[0] != nil || line.length < 8
-#       prior_word = previous_word(line[0])
-#       line.unshift prior_word
-
-#       break if line[0] == line[1] && line[1] == line[2]
-#     end
-#   end
-
-#   line = line.compact.join(' ') if line.is_a? Array
-#   puts "Line generated: #{line}"
-#   rap_lines.concat [line]
-# end
-
-# puts rap_lines.join "\n"
