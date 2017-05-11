@@ -134,7 +134,7 @@ end
 get "/bigram/next" do
     content_type :json
 
-    BigramService.random_word_before(
+    BigramService.random_word_after(
         word: params[:prior],
         identifier: IdentityService.query_parameters(params[:identifier], params[:medium], params[:channel])
     ).to_json
