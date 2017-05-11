@@ -1,4 +1,4 @@
-require 'httparty'
+require 'retort_api'
 require 'rhymes'
 
 rhyme_schemes = {
@@ -16,21 +16,12 @@ rhyme_scheme = rhyme_schemes[:limerick]
 
 # Generate a random word that we've seen Kanye use prior to the given word
 def previous_word after
-  url = "http://www.retort.us/bigram/prior?after=#{after}&medium=bible"
-  json = JSON.parse(HTTParty.get(url).body)
-
-  puts "#{json['prior']} --> #{after}"
-
-  json["prior"]
-rescue
-  puts "No words found prior to #{after}"
-  nil
+  RetortApi.get_word_before(after, identity: { medium: 'bible' })
 end
 
 # Generate a fully random line
 def full_line
-  url = "http://www.retort.us/markov/create?medium=bible"
-  HTTParty.get(url).body
+  RetortApi.markov_chain(identity: { medium: 'bible' })
 end
 
 # Returns all possible rhymes for a word
