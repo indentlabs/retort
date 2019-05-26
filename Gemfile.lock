@@ -21,7 +21,7 @@ GEM
     json (1.8.3)
     minitest (5.8.1)
     pg (0.18.3)
-    rack (1.6.4)
+    rack (1.6.11)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
