@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: activerecord
+    versions:
+    - 6.1.1
+    - 6.1.2
+  - dependency-name: minitest
+    versions:
+    - 5.14.3
