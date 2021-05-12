@@ -1,3 +1,5 @@
+require 'active_record'
+
 set :public_folder, Proc.new { File.join(root, "views", "assets") }
 
 configure :development do
