@@ -46,7 +46,7 @@ GEM
       sinatra (>= 1.0.0)
     sinatra-redirect-with-flash (0.2.1)
       sinatra (>= 1.0.0)
-    sqlite3 (1.4.1)
+    sqlite3 (1.4.2)
     thread_safe (0.3.6)
     tilt (2.0.9)
     tux (0.3.0)
